@@ -87,37 +87,63 @@
     </form>
 
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $angka1 = $_POST['angka1'];
-        $angka2 = $_POST['angka2'];
-        $operator = $_POST['operator'];
-        $hasil = 0;
-        $simbol = "";
+// Mengecek apakah form dikirim menggunakan metode POST (artinya user sudah menekan tombol Hitung)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        if ($operator == "tambah") {
-            $hasil = $angka1 + $angka2;
-            $simbol = "+";
-        } elseif ($operator == "kurang") {
-            $hasil = $angka1 - $angka2;
-            $simbol = "-";
-        } elseif ($operator == "kali") {
-            $hasil = $angka1 * $angka2;
-            $simbol = "*";
-        } elseif ($operator == "bagi") {
-            if ($angka2 != 0) {
-                $hasil = $angka1 / $angka2;
-                $simbol = "/";
-            } else {
-                $hasil = "Tidak bisa dibagi dengan 0";
-                $simbol = "/";
-            }
+    // VARIABEL:
+    // $angka1 dan $angka2 menyimpan nilai input dari pengguna.
+    // Nilai ini akan digunakan sebagai angka pertama dan kedua dalam perhitungan.
+    $angka1 = $_POST['angka1'];
+    $angka2 = $_POST['angka2'];
+
+    // $operator menyimpan jenis operasi yang dipilih user dari dropdown (tambah, kurang, kali, bagi).
+    $operator = $_POST['operator'];
+
+    // $hasil untuk menyimpan hasil perhitungan.
+    // $simbol untuk menyimpan simbol operator (+, -, *, /) agar bisa ditampilkan bersama hasilnya.
+    $hasil = 0;
+    $simbol = "";
+
+    // LOGIKA IF-ELSE:
+    // Mengecek nilai $operator untuk menentukan jenis perhitungan.
+    if ($operator == "tambah") {
+        // OPERATOR: +
+        // Melakukan penjumlahan antara $angka1 dan $angka2
+        $hasil = $angka1 + $angka2;
+        $simbol = "+";
+
+    } elseif ($operator == "kurang") {
+        // OPERATOR: -
+        // Melakukan pengurangan angka1 dikurang angka2
+        $hasil = $angka1 - $angka2;
+        $simbol = "-";
+
+    } elseif ($operator == "kali") {
+        // OPERATOR: *
+        // Melakukan perkalian antara angka1 dan angka2
+        $hasil = $angka1 * $angka2;
+        $simbol = "*";
+
+    } elseif ($operator == "bagi") {
+        // OPERATOR: /
+        // Melakukan pembagian jika angka2 bukan nol, karena membagi dengan 0 tidak valid
+        if ($angka2 != 0) {
+            $hasil = $angka1 / $angka2;
+            $simbol = "/";
         } else {
-            $hasil = "Operator tidak valid";
-            $simbol = "?";
+            $hasil = "Tidak bisa dibagi dengan 0";
+            $simbol = "/";
         }
 
-        echo "<div class='hasil'>$angka1 $simbol $angka2 = $hasil</div>";
+    } else {
+        // Jika operator tidak dikenali, tampilkan pesan error
+        $hasil = "Operator tidak valid";
+        $simbol = "?";
     }
+
+    // Menampilkan hasil akhir ke layar dalam bentuk angka1 operator angka2 = hasil
+    echo "<div class='hasil'>$angka1 $simbol $angka2 = $hasil</div>";
+}
     ?>
   </div>
 </body>
