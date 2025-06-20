@@ -1,0 +1,20 @@
+Penjelasan Program Kalkulator PHP
+
+1. Pengguna memasukkan dua angka melalui form input dan memilih satu operator 
+   (tambah, kurang, kali, atau bagi) dari dropdown.
+
+2. Setelah tombol "Hitung" ditekan, data dikirim ke server menggunakan metode POST.
+
+3. Di sisi server, PHP membaca nilai dari ketiga input tersebut (angka pertama, angka kedua, dan operator).
+
+4. Berdasarkan operator yang dipilih:
+   - Jika "tambah", maka dilakukan operasi penjumlahan.
+   - Jika "kurang", maka dilakukan pengurangan.
+   - Jika "kali", maka dilakukan perkalian.
+   - Jika "bagi", maka dilakukan pembagian, 
+     kecuali jika angka kedua bernilai 0, maka akan muncul pesan error 
+     ("Tidak bisa dibagi dengan 0").
+
+5. Hasil perhitungan akan ditampilkan di bawah form dalam halaman yang sama.
+
+Program ini hanya menggunakan satu file PHP untuk menampilkan form dan memproses hasil sekaligus.
